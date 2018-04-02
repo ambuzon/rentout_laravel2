@@ -1,7 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Edit Post</h1>
+<br>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card card-default">
+                <div class="card-header">Edit Post</div>
     {!! Form::open(['action' => ['PostController@update', $post->id],'method'=>'POST', 'enctype' => 'multipart/form-data']) !!}
         <div class="form-group">
             {{Form::label('title', 'Title')}}
@@ -63,6 +69,10 @@
             <div class="form-group">
                     {{Form::file('cover_image')}}
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
         {{Form::submit('Update', ['class'=>'btn btn-primary '])}}
     {!! Form::close() !!}
 @endsection

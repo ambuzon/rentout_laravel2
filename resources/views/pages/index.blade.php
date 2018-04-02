@@ -37,7 +37,7 @@
         <div class="row justify-content-center">
             <div class="col-md-5">
                 <div class="styled-heading">
-                    <h3>Featured Units</h3>
+                    <h3>Condominium Units</h3>
                 </div>
             </div>
         </div>
@@ -49,9 +49,7 @@
                             <div class="featured-place-wrap">
                                 <a href="/post/{{$post->id}}">
                                     <img src="/storage/cover_images/{{$post->condos['cover_image']}}" class="img-fluid" alt="#">
-                                    {{--  add rating data here  --}}
-                                <span class="featured-rating-orange">{!!str_replace(["[","]","\""],' ',$post->condos()->pluck('ratings'))!!}</span>
-                                    {{--  add rating data here  --}}
+
                                     <div class="featured-title-box">
                                         <h6>{{$post->title}}</h6>
                                         <p>{!!str_replace(["[","]","\""],' ',$post->condos()->pluck('name'))!!} </p> <span>• </span>

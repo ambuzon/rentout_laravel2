@@ -80,7 +80,6 @@
                                                     {{--  Customer  --}}
                                                     @elseif(Auth::user()->types['id'] == 1)
                                                         <a class="dropdown-item" href="/profile">Profile</a>
-                                                        <a class="dropdown-item" href="#">History</a>
                                                     @endif
                                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                                         onclick="event.preventDefault();

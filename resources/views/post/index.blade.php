@@ -5,7 +5,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<!--============================= FEATURED PLACES =============================-->
+<!--============================= FEATURED UNITS =============================-->
 <section class="main-block light-bg" name='test'>
         <br>
         <br>
@@ -45,9 +45,7 @@
                                 <div class="featured-place-wrap">
                                     <a href="/post/{{$post->id}}">
                                         <img src="/storage/cover_images/{{$post->condos['cover_image']}}" class="img-fluid" alt="#">
-                                        {{--  add rating data here  --}}
-                                    <span class="featured-rating-orange">{!!str_replace(["[","]","\""],' ',$post->condos()->pluck('ratings'))!!}</span>
-                                        {{--  add rating data here  --}}
+
                                         <div class="featured-title-box">
                                             <h6>{{$post->title}}</h6>
                                             <p>{!!str_replace(["[","]","\""],' ',$post->condos()->pluck('name'))!!} </p> <span>• </span>

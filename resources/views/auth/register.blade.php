@@ -77,7 +77,7 @@
                                 <label for="phone_num" class="col-md-4 col-form-label text-md-right">Mobile No.</label>
     
                                 <div class="col-md-6">
-                                    <input id="phone_num" type="text" class="form-control{{ $errors->has('phone_num') ? ' is-invalid' : '' }}" name="phone_num" value="{{ old('phone_num') }}" required>
+                                    <input id="phone_num" type="number" maxlength="10" class="form-control{{ $errors->has('phone_num') ? ' is-invalid' : '' }}" name="phone_num" value="{{ old('phone_num') }}" required>
     
                                     @if ($errors->has('phone_num'))
                                         <span class="invalid-feedback">
@@ -91,7 +91,8 @@
                                     <label for="telephone_num" class="col-md-4 col-form-label text-md-right">Telephone No.</label>
         
                                     <div class="col-md-6">
-                                        <input id="telephone_num" type="text" class="form-control{{ $errors->has('telephone_num') ? ' is-invalid' : '' }}" name="telephone_num" value="{{ old('telephone_num') }}" required>
+                                        <input id="telephone_num" type="number" maxlength="7" pattern="^[0-9]{6}|[0-9]{8}|[0-9]{10}$" class="form-control{{ $errors->has('telephone_num') ? ' is-invalid' : '' }}" name="telephone_num" value="{{ old('telephone_num') }}" required>
+                                        <input type="text" name="phone" maxlength="7" pattern="^[0-9]{6}|[0-9]{8}|[0-9]{10}$" />
         
                                         @if ($errors->has('telephone_num'))
                                             <span class="invalid-feedback">
