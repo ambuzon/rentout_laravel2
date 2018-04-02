@@ -6,7 +6,7 @@
 <body>
 
 <div>
-     {!! $name !!} request from user. From A
+     {!! $name !!} request from user.
 </div>
 
 </body>
