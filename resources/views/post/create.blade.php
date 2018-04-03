@@ -32,7 +32,7 @@
                         
                         <div class="form-group">
                             {{Form::label('price', 'Price')}}
-                            {{Form::text('price', '', ['class'=>'form-control','placeholder'=>'0.0'])}}
+                            {{Form::number('price', '', ['class'=>'form-control','placeholder'=>'0.0'])}}
                         </div>
                         {{--  <div class="form-group">
                             {{Form::label('sale_price', 'Promo Price')}}

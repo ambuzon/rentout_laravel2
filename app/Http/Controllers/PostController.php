@@ -77,7 +77,7 @@ class PostController extends Controller
             'inclusion' => 'required',
             'unit_level' => 'required',
             'unit_type' => 'required',
-            'price' => 'required',
+            'price' => 'required|numeric',
             'cover_image' => 'required'
         ]);
 

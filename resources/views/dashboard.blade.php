@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header">Dashboard of {{Auth::user()->name}}                     <a href="/post/create" class="btn btn-primary">Create Post</a>
+                <div class="card-header">Dashboard of {{Auth::user()->name}}                    <a href="/post/create" class="btn btn-primary">Create Post</a>
                 </div>
                 <div class="card-body">
                     @if (session('status'))
@@ -36,7 +36,7 @@
                                     <th>
                                         {!! Form::open(['action' => ['PostController@destroy', $post->id],'method'=>'POST', 'class'=>'pull-right']) !!}
                                         {{Form::hidden('_method','DELETE')}}
-                                        {{Form::submit('Reserved',['class'=>'btn btn-danger'])}}
+                                        {{Form::submit('Reserved',['class'=>'btn btn-warning'])}}
                                         {!!Form::close()!!}
                                     </th>
                                     <th>

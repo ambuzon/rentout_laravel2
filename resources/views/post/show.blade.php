@@ -38,13 +38,13 @@
     <!--============================= BOOKING =============================-->
     <div>
         <!-- Swiper -->
-        <div class="swiper-container">
+        <div class="swiper-container" style="z-index: -9999;">
             <div class="swiper-wrapper">
                 {{--  add the foreach here  --}}
                 @foreach($images as $image)
                 <div class="swiper-slide">
                         <a href="/images/reserve-slide2.jpg" class="grid image-link">
-                            <img src="/storage/{{$image->cover_image}}" class="img-fluid" alt="#">
+                            <img src="/storage/{{$image->cover_image}}" class="img-fluid" alt="#" style="width:600px;height:350px;">
                         </a>
                     </div>
                 @endforeach
@@ -153,7 +153,7 @@
                     </div>
                     <div class="follow">
                         <div class="follow-img">
-                            <img src="/storage/profile/{{$post->user['profile_picture']}}" class="img-fluid" alt="#">
+                            <img src="/storage/profile/{{$post->user['profile_picture']}}" class="img-fluid" alt="#" style="width:150px;height:150px;">
                             <h6>{{$post->user['name']}}</h6>
                             <span>Property Specialist</span>
                         </div>
@@ -183,6 +183,8 @@
                                 <span>Sold</span>
                             </li>
                         </ul> --}}
+
+                        <br>
                     </div>
                 </div>
             </div>

@@ -50,12 +50,12 @@ class AdminController extends Controller
             'address' => 'required',
             'description' => 'required',
             'license' => 'required',
-            'tin' => 'required',
+            'tin' => 'required' ,
             'psname' => 'required',
             'email' => 'required',
             'sex' => 'required',
-            'mobnum' => 'required',
-            'telnum' => 'required',
+            'mobnum' => 'required|numeric|digits:10',
+            'telnum' => 'required|numeric|digits:7',
             'cover_image' => 'required'
         ]);
 

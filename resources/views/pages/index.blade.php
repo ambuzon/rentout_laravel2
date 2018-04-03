@@ -48,7 +48,7 @@
                         <div class="col-md-4 featured-responsive">
                             <div class="featured-place-wrap">
                                 <a href="/post/{{$post->id}}">
-                                    <img src="/storage/cover_images/{{$post->condos['cover_image']}}" class="img-fluid" alt="#">
+                                    <img src="/storage/cover_images/{{$post->condos['cover_image']}}" class="img-fluid" alt="#" style="width:400px;height:300px;">
 
                                     <div class="featured-title-box">
                                         <h6>{{$post->title}}</h6>
@@ -90,48 +90,40 @@
 </section>
 
     <!--============================= REAL ESTATE DEVELOPERS =============================-->
-    <section class="main-block">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-5">
-                    <div class="styled-heading">
+    <section class="main-block light-bg">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-5">
+                        <div class="styled-heading">
                         <h3>Real Estate Developers</h3>
                     </div>
                 </div>
             </div>
+        <div class="row">
             <div class="col-md-3 category-responsive">
                 <div class="featured-place-wrap">
                     <a href="/services">
-                        <img src="/storage/developers/avida.png" class="img-fluid" alt="#">
-                        {{--  add rating data here  --}}
+                        <img src="/storage/developers/avida.png" class="img-fluid" alt="#" style="width:600px;height:100px;">
                     </a>
                 </div>
             </div>
             <div class="col-md-3 category-responsive">
                 <div class="featured-place-wrap">
                     <a href="/services">
-                        <img src="/storage/developers/ayala.JPG" class="img-fluid" alt="#">
-                        {{--  add rating data here  --}}
+                        <img src="/storage/developers/ayala.JPG" class="img-fluid" alt="#" style="width:800px;height:100px;">
                     </a>
                 </div>
             </div>
             <div class="col-md-3 category-responsive">
                 <div class="featured-place-wrap">
                     <a href="/services">
-                        <img src="/storage/developers/century.png" class="img-fluid" alt="#">
-                        {{--  add rating data here  --}}
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3 category-responsive">
-                <div class="featured-place-wrap">
-                    <a href="/services">
-                        <img src="/storage/developers/dmci.png" class="img-fluid" alt="#">
+                        <img src="/storage/developers/century.png" class="img-fluid" alt="#" style="width:800px;height:100px;">
                         {{--  add rating data here  --}}
                     </a>
                 </div>
             </div>
         </div>
+    </div>
     </section>
     <!--//END CATEGORIES -->
 

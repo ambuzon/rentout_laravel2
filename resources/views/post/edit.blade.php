@@ -17,12 +17,6 @@
                 {{Form::label('body', 'Body')}}
                 {{Form::textarea('body', $post->body, ['id' => 'article-ckeditor', 'class'=>'form-control','placeholder'=>'Body Text'])}}
             </div>
-            <div class="form-group">
-                    {{Form::label('amenities', 'Gym')}}
-                    {{Form::checkbox('amenities[]', 1)}}
-                    {{Form::label('amenities', 'Swimming Pool')}}
-                    {{Form::checkbox('amenities[]', 2)}}
-                </div>
                 <div class="form-group">
                     {{Form::label('inclusion', 'Inclusion')}}
                     {{Form::select('inclusion', ['Fully-Furnished' => 'Fully-Furnished', 'Semi-Furnished' => 'Semi-Furnished', 'Unfurnished' => 'Unfurnished'], 'Semi-Furnished')}}
@@ -59,7 +53,7 @@
                 </div>
                 <div class="form-group">
                     {{Form::label('price', 'Price')}}
-                    {{Form::text('price', '', ['class'=>'form-control','placeholder'=>'0.0'])}}
+                    {{Form::number('price', '', ['class'=>'form-control','placeholder'=>'0.0'])}}
                 </div>
                 {{--  <div class="form-group">
                     {{Form::label('sale_price', 'Promo Price')}}

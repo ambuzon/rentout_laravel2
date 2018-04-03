@@ -124,12 +124,12 @@
 
                 <div class="form-group">
                         {{Form::label('mobnum', 'Mobile No.')}} 
-                        {{Form::text('mobnum', '', ['class'=>'form-control','placeholder'=>'+63 932-842-7121'])}}
+                        {{Form::number('mobnum', '', ['class'=>'form-control','placeholder'=>'+63 932-842-7121'])}}
                 </div>
 
                 <div class="form-group">
                         {{Form::label('telnum', 'Telephone No.')}} 
-                        {{Form::text('telnum', '', ['class'=>'form-control','placeholder'=>'(02) 881-0240'])}}
+                        {{Form::number('telnum', '', ['class'=>'form-control','placeholder'=>'(02) 881-0240'])}}
                 </div>
 
                 <div class="form-group">

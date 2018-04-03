@@ -6,7 +6,10 @@
 <body>
 
 <div>
-     {!! $name !!} request from user. From A
+        <p>Your {!! $name !!} request has been sent, the property specialist will be in contact with you through email shortly.</p>
+        <p>Thank you</p>
+
+           <a href="http://rentout.demo/"> <button> Visit Website </button> </a>
 </div>
 
 </body>
