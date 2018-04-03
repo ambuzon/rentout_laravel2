@@ -6,13 +6,12 @@
 <body>
 
 <div>
-     <p>Your {!! $name !!} request for (insert $post->title here) in (insert $post->condos['name'] has been sent 
-         to (insert $condo->pspecialist['name'])). He will reply to you shortly regarding this transaction. 
+<p>Your {!! $request !!} request for {!! $title !!} in {!! $condo !!} has been sent 
+         to {!! $propertyS !!}. He will reply to you shortly regarding this transaction. 
         Regards.</p>
 
-        <p>Users Additional Inout: {{ $content }}
-                    </p>
-
+        <p>You may follow up through his gmail:{!! $propertyE !!}</p>
+1
     <a href="http://rentout.demo/"> <button> Visit Website </button> </a>
 
 

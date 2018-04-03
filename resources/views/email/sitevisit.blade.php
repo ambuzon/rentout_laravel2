@@ -6,10 +6,13 @@
 <body>
 
 <div>
-        <p>Your {!! $name !!} request has been sent, the property specialist will be in contact with you through email shortly.</p>
-        <p>Thank you</p>
+    <p>Your {!! $request !!} request for {!! $title !!} in {!! $condo !!} has been sent 
+        to {!! $propertyS !!}. He will reply to you shortly regarding this transaction. 
+       Regards.</p>
 
-           <a href="http://rentout.demo/"> <button> Visit Website </button> </a>
+       <p>You may follow up through his gmail:{!! $propertyE !!}</p>
+
+   <a href="http://rentout.demo/"> <button> Visit Website </button> </a>
 </div>
 
 </body>

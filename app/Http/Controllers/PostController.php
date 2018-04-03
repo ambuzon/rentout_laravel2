@@ -229,9 +229,26 @@ class PostController extends Controller
         elseif($post->status == 1){
             $condo->increment('total_reserves');
             $condo->increment('reserved');
-            if($condo->reserved > 5){
+            if($condo->reserved == 5){
                 //Send Billing to Property Specialist
                 $condo->reserved = 0;
+
+                $pspecialist = User::find($condo->user_id);
+                
+                $data = array(
+                    'propertyS' => $pspecialist->name,
+                    'propertyE' => $pspecialist->email,
+                );
+                
+                Mail::send('/email/billing', $data, function ($message) {
+
+                    $customer = auth()->user()->email;
+            
+                    $message->from('elliotwalteriq@gmail.com', 'Rentout Bill');
+            
+                    $message->to($pspecialist->email)->subject('Billing');
+            
+                });
             }
             $condo->save();
             $post->status = 0;

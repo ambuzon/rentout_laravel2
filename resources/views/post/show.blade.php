@@ -110,14 +110,19 @@
                         <div class="customer-review_wrap">
                             
                             <div class="customer-content-wrap">
-                                {!! Form::open(['action' => 'Email@book','method'=>'GET','enctype' => 'multipart/form-data']) !!}
+                                {!! Form::open(['action' => 'Email@book','method'=>'GET']) !!}
                                 <div class="form-group">
                                     {{Form::label('start', 'Stay Duration')}}
                                     {{Form::select('Duration', ['sixmonths' => '6 Months', 'oneyear' => '1 Year'])}}
                                 </div>
                                 <div class="form-group">
                                     {{Form::label('optional', 'Additional Inquiries')}}
-                                    {{Form::textarea('inquiry', '', ['class'=>'form-control','placeholder'=>'(Optional)'])}}                                </div>
+                                    {{Form::textarea('optional', '', ['class'=>'form-control','placeholder'=>'(Optional)'])}}     
+                                </div>
+                                {{Form::hidden('title', $post->title)}}
+                                {{Form::hidden('condo', $post->condos['name'])}}
+                                {{Form::hidden('propertyS', $post->user['name'])}}
+                                {{Form::hidden('propertyE', $post->user['email'])}}
                                 {{Form::submit('Submit', ['class'=>'btn btn-primary '])}}
                                 {!! Form::close() !!}
                             </div>
@@ -136,7 +141,12 @@
                                 </div>
                                 <div class="form-group">
                                     {{Form::label('optional', 'Additional Inquiries')}}
-                                    {{Form::textarea('inquiry', '', ['class'=>'form-control','placeholder'=>'(Optional)'])}}                                </div>
+                                    {{Form::textarea('optional', '', ['class'=>'form-control','placeholder'=>'(Optional)'])}}
+                                </div>
+                                {{Form::hidden('title', $post->title)}}
+                                {{Form::hidden('condo', $post->condos['name'])}}
+                                {{Form::hidden('propertyS', $post->user['name'])}}
+                                {{Form::hidden('propertyE', $post->user['email'])}}
                                 {{Form::submit('Submit', ['class'=>'btn btn-primary '])}}
                                 {!! Form::close() !!}
                             </div>
