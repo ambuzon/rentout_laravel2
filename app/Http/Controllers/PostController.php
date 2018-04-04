@@ -206,8 +206,16 @@ class PostController extends Controller
      */
     public function destroy(Request $request, $id)
     {
+
+    }
+
+    public function reserve(Request $request, $id){
         $post = Post::find($id);
-        $condo = Condo::find($post->condos['id']);
+
+        $this->validate($request, [
+            'customer' => 'required',
+            'checkbox' => 'required',
+        ]);
         if(auth()->user()->types['id'] == 1){
             return redirect('/')->with('error', 'Unauthorized Page');
         }
@@ -216,73 +224,87 @@ class PostController extends Controller
          if(auth()->user()->id !== $post->user_id){
             return redirect('/post')->with('error','Unauthorized Page');
         }
-        if($request->remove == true){
-            $post->status = 2;
-            $post->save();
-            return redirect('\dashboard')->with('success','Post Removed');
-        }
 
-        $post = Post::find($id);
-        if($post->status == 0){
-            $post->status = 1;
-        }
-        elseif($post->status == 1){
+        if($request->input('checkbox') == true){
+            $post->status = 0;
+            $post->save();
+            $condo = Condo::find($post->condos['id']);
             $condo->increment('total_reserves');
             $condo->increment('reserved');
-            if($condo->reserved == 5){
-                //Send Billing to Property Specialist
-                $condo->reserved = 0;
+                if($condo->reserved == 5){
+                    //Send Billing to Property Specialist
+                    $condo->reserved = 0;
+                    $pspecialist = User::find($condo->user_id);
 
-                $pspecialist = User::find($condo->user_id);
+                    $data = array(
+                        'propertyS' => $pspecialist->name,
+                        'propertyE' => $pspecialist->email,
+                    );
+                    
+                    Mail::send('/email/billing', $data, function ($message) {
+
+                        $customer = auth()->user()->email;
                 
-                $data = array(
-                    'propertyS' => $pspecialist->name,
-                    'propertyE' => $pspecialist->email,
-                );
+                        $message->from('elliotwalteriq@gmail.com', 'Rentout Bill');
                 
-                Mail::send('/email/billing', $data, function ($message) {
-
-                    $customer = auth()->user()->email;
-            
-                    $message->from('elliotwalteriq@gmail.com', 'Rentout Bill');
-            
-                    $message->to($pspecialist->email)->subject('Billing');
-            
-                });
-            }
-            $condo->save();
-            $post->status = 0;
-
-            $report = new Report;
-            $report->post_name = $post->title;
-            $report->post_condo = auth()->user()->condos['name'];
-            $report->user_id = $post->user_id;
-            $report->user_name = auth()->user()->name;
-            $report->post_value = $post->price;
-            $report->reserved_at = $post->created_at;
-            $report->save();
+                        $message->to($pspecialist->email)->subject('Billing');
+                
+                    });
+                }
+                $condo->save();
+                $post->status = 0;
+                $report = new Report;
+                $report->post_name = $post->title;
+                $report->post_condo = auth()->user()->condos['name'];
+                $report->user_id = $post->user_id;
+                $report->user_name = auth()->user()->name;
+                $report->post_value = $post->price;
+                $report->reserved_at = $post->created_at;
+                $report->customer = $request->input('customer');
+                $report->save();
+                return redirect('\dashboard')->with('success','Transaction Complete');
+        }
+        else
+        return redirect('\dashboard')->with('error','Please Check the Checkbox');
 
         }
+    public function reactivate(Request $request, $id){
+        $post = Post::find($id);
+        $this->validate($request, [
+            'checkbox' => 'required',
+        ]);
+        if(auth()->user()->types['id'] == 1){
+            return redirect('/')->with('error', 'Unauthorized Page');
+        }
+        
+        //Check for correct user
+         if(auth()->user()->id !== $post->user_id){
+            return redirect('/post')->with('error','Unauthorized Page');
+         }
+        $post->status = 1;
         $post->save();
-        return redirect('\dashboard')->with('success','Post Deactivated');
-
-        // if($post->cover_image != 'noimage.jpg'){
-        //     //Delete Image
-        //     Storage::delete('public/cover_image/'.$post->cover_image);
-
-
-        // }
-        // if($post->dev_image != 'noimage.jpg'){
-        //     //Delete Image
-        //     Storage::delete('public/developers/'.$post->dev_image);
-
-
-        // }
-        // $post->delete();
-        // return redirect('\post')->with('success','Post Deleted');
+        return redirect('\dashboard')->with('success','Transaction Complete');
 
     }
 
+    public function remove(Request $request, $id){
+        $post = Post::find($id);
+        $this->validate($request, [
+            'checkbox' => 'required',
+        ]);
+        if(auth()->user()->types['id'] == 1){
+            return redirect('/')->with('error', 'Unauthorized Page');
+        }
+        
+        //Check for correct user
+         if(auth()->user()->id !== $post->user_id){
+            return redirect('/post')->with('error','Unauthorized Page');
+        }
+        $post->status = 2;
+        $post->save();
+        return redirect('\dashboard')->with('success','Transaction Complete');
+
+    }
     public function search(Request $request){
         $search=$request->input('search_term');
         $output = Post::search($search)->paginate(10);

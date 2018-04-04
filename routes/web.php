@@ -33,6 +33,9 @@ Route::get('/admin/condos', 'PagesController@condo');
 
 
 
+Route::post('reserved{post}', 'PostController@reserve');
+Route::post('reactivate{post}', 'PostController@reactivate');
+Route::post('remove{post}', 'PostController@remove');
 
 Route::resource('post', 'PostController');
 Route::get('/admin/users', 'AdminController@users_index');

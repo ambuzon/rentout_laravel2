@@ -27,7 +27,8 @@ class ExcelExport implements FromCollection, WithHeadings
             'POST TITLE',
             'PRICE',
             'PROPERTY SPECIALIST',
-            'PS_ID'
+            'PS_ID',
+            'Customer'
         ];
     }
 }

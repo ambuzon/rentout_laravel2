@@ -43,7 +43,7 @@
                 {{--  add the foreach here  --}}
                 @foreach($images as $image)
                 <div class="swiper-slide">
-                        <a href="/images/reserve-slide2.jpg" class="grid image-link">
+                        <a href="/storage/{{$image->cover_image}}" class="grid image-link">
                             <img src="/storage/{{$image->cover_image}}" class="img-fluid" alt="#" style="width:600px;height:350px;">
                         </a>
                     </div>
@@ -70,7 +70,6 @@
                     <div class="reserve-seat-block">
                         <div class="reserve-btn">
                             <div class="featured-btn-wrap">
-                                <a href="/book" class="btn btn-danger">Bookmark</a>
                             </div>
                         </div>
                     </div>

@@ -11,6 +11,7 @@
 @if($optional != null)
     <p>Additional Input by Customer: {!! $optional !!}</p>
 @endif
+
 <a href="http://rentout.demo/"> <button> Accept </button> </a>
 <a href="http://rentout.demo/"> <button> Decline </button> </a>
 
