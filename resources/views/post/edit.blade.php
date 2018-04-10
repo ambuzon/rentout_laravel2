@@ -62,11 +62,13 @@
             {{Form::hidden('_method','PUT')}}
             <div class="form-group">
                     {{Form::file('cover_image')}}
-                </div>
+            </div>
+            <div class="form-group">
+                {{Form::submit('Update', ['class'=>'btn btn-primary '])}}
+            </div>
             </div>
         </div>
     </div>
 </div>
-        {{Form::submit('Update', ['class'=>'btn btn-primary '])}}
     {!! Form::close() !!}
 @endsection

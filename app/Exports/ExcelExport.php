@@ -21,8 +21,8 @@ class ExcelExport implements FromCollection, WithHeadings
     {
         return [
             'ID',
-            'CREATED DATE',
             'RESERVED DATE',
+            'CREATED DATE',
             'CONDOMINIUM',
             'POST TITLE',
             'PRICE',

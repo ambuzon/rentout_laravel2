@@ -11,6 +11,10 @@ use App\Types;
 use App\User;
 use App\image;
 use App\Report;
+use App\Mail\BillingS;
+use Mail;
+
+
 
 use Auth;
 
@@ -234,6 +238,8 @@ class PostController extends Controller
                 if($condo->reserved == 5){
                     //Send Billing to Property Specialist
                     $condo->reserved = 0;
+                    $condo->status = 0;
+                    $condo->save();
                     $pspecialist = User::find($condo->user_id);
 
                     $data = array(
@@ -241,15 +247,8 @@ class PostController extends Controller
                         'propertyE' => $pspecialist->email,
                     );
                     
-                    Mail::send('/email/billing', $data, function ($message) {
+                    Mail::to(auth()->user()->email)->send(new BillingS($data));
 
-                        $customer = auth()->user()->email;
-                
-                        $message->from('elliotwalteriq@gmail.com', 'Rentout Bill');
-                
-                        $message->to($pspecialist->email)->subject('Billing');
-                
-                    });
                 }
                 $condo->save();
                 $post->status = 0;

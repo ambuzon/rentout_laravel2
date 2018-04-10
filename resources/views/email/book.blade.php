@@ -7,11 +7,9 @@
 
 <div>
 <p>Your {!! $request !!} request for {!! $title !!} in {!! $condo !!} has been sent 
-         to {!! $propertyS !!}. He will reply to you shortly regarding this transaction. 
-        Regards.</p>
-
+         to Property Specialist {!! $propertyS !!}. He will reply to you shortly regarding this transaction. </p> <br> <br>
+         <p>Regards.</p>
         <p>You may follow up through his gmail:{!! $propertyE !!}</p>
-1
     <a href="http://rentout.demo/"> <button> Visit Website </button> </a>
 
 

@@ -6,7 +6,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
 class PropertyS extends Mailable
 {
     use Queueable, SerializesModels;
@@ -16,10 +15,13 @@ class PropertyS extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $data;
+
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
+
 
     /**
      * Build the message.
@@ -28,6 +30,32 @@ class PropertyS extends Mailable
      */
     public function build()
     {
-        return $this->view('email.adminbook');
+        if($this->data['request'] == "Site Visit"){
+            return $this->subject('Customer Site Visit Request')->view('email.adminsitevisit')->with([
+                'propertyE' => $this->data['propertyE'],
+                'propertyS' => $this->data['propertyS'],
+                'title' => $this->data['title'],
+                'customer' => $this->data['customer'],
+                'customerE' => $this->data['customerE'],
+                'customerP' => $this->data['customerP'],
+                'customerT' => $this->data['customerT'],
+                'optional' => $this->data['optional'],
+                'time' => $this->data['time'],
+            ]);
+        }
+        elseif($this->data['request'] == "Unit Booking"){
+            return $this->subject('Customer Booking Request')->view('email.adminbook')->with([
+                'propertyE' => $this->data['propertyE'],
+                'propertyS' => $this->data['propertyS'],
+                'title' => $this->data['title'],
+                'customer' => $this->data['customer'],
+                'customerE' => $this->data['customerE'],
+                'customerP' => $this->data['customerP'],
+                'customerT' => $this->data['customerT'],
+                'optional' => $this->data['optional'],
+                'duration' => $this->data['duration'],
+            ]);
+        }
+        
     }
 }

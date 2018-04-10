@@ -1,7 +1,9 @@
 @extends('layouts.app')
-
+<br>
+<br>
 <section class="slider d-flex align-items-center">
         <!-- <img src="images/slider.jpg" class="img-fluid" alt="#"> -->
+        {{-- @include('inc.messages') --}}
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-12">
@@ -37,7 +39,7 @@
         <div class="row justify-content-center">
             <div class="col-md-5">
                 <div class="styled-heading">
-                    <h3>Condominium Units</h3>
+                    <h3>Featured Units</h3>
                 </div>
             </div>
         </div>
@@ -127,44 +129,42 @@
     </section>
     <!--//END CATEGORIES -->
 
-<!--============================= ADD LISTING =============================-->
+<!--============================= ABOUT =============================-->
 <section class="main-block light-bg">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="add-listing-wrap">
-                        <h2>Reach millions of People</h2>
-                        <p>Add your business infront of millions and earn 3x profits from our listing</p>
+                        <h2>About</h2>
+                        <p style="text-align:justify">The purpose of the Rentout web application is to alleviate the issues or pain points 
+                            determined and verified by the respondents on the first survey. This does not only address 
+                            the pain points but, this will also bring in enhanced user experience.  
+                 
+                            The Rentout web application is a cool and easy way to search and advertise condominium 
+                            units. By using the GPS technology, the searching methods has been taken up to a whole new 
+                            level; displaying search results within x kilometer radius.</p>
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-md-4">
-                    <div class="featured-btn-wrap">
-                        <a href="#" class="btn btn-danger"><span class="ti-plus"></span> ADD LISTING</a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 <!--============================= FOOTER =============================-->
-    <footer class="main-block dark-bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="copyright">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <p>Copyright &copy; 2018 Listing. All rights reserved | This project is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Rentout.inc</a></p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <ul>
-                            <p>Contact us : </p>
-                            <li><a href="#"><span class="ti-facebook"></span></a></li>
-                            <li><a href="#"><span class="ti-twitter-alt"></span></a></li>
-                            <li><a href="#"><span class="ti-instagram"></span></a></li>
-                        </ul>
-                    </div>
+<footer class="main-block dark-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="copyright">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <p>Copyright &copy; 2018 Listing. All rights reserved | This project is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Rentout.inc</a></p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <ul>
+                        <p>Contact us : </p>
+                        <li><a href="https://www.facebook.com/"><span class="ti-facebook"></span></a></li>
+                        <li><a href="https://twitter.com/"><span class="ti-twitter-alt"></span></a></li>
+                        <li><a href="https://www.instagram.com/"><span class="ti-instagram"></span></a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 <!--//END FOOTER -->

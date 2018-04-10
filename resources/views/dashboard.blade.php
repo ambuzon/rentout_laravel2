@@ -1,5 +1,6 @@
 @extends('layouts.app')
-
+<br>
+<br>
 
 @section('content')
 <br>
@@ -91,5 +92,3 @@
 </div>
 
 @endsection
-
-

@@ -123,16 +123,17 @@
                 </div>
 
                 <div class="form-group">
-                        {{Form::label('mobnum', 'Mobile No.')}} 
-                        {{Form::number('mobnum', '', ['class'=>'form-control','placeholder'=>'+63 932-842-7121'])}}
+                        {{Form::label('mobnum', 'Mobile No. (+63)')}} 
+                        {{Form::number('mobnum', '', ['class'=>'form-control','placeholder'=>'932-842-7121'])}}
                 </div>
 
                 <div class="form-group">
-                        {{Form::label('telnum', 'Telephone No.')}} 
-                        {{Form::number('telnum', '', ['class'=>'form-control','placeholder'=>'(02) 881-0240'])}}
+                        {{Form::label('telnum', 'Telephone No. (02)')}} 
+                        {{Form::number('telnum', '', ['class'=>'form-control','placeholder'=>'881-0240'])}}
                 </div>
 
                 <div class="form-group">
+                    {{Form::label('pic', 'Upload Picture Logo of Condo')}} 
                     {{Form::file('cover_image')}}
                 </div>
 

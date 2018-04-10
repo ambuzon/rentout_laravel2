@@ -41,7 +41,7 @@
                         <div class="form-group">
                             <input type="file" name="cover_image[]" multiple>
                             <br>
-                            <span style="color:#cccccc;text-align:center;">Add multiple files</span>
+                            <span style="color:#cccccc;text-align:center;">Minimum 3 Pictures Upload</span>
                         </div>
                     {{Form::submit('Submit', ['class'=>'btn btn-primary '])}}
                     {!! Form::close() !!}

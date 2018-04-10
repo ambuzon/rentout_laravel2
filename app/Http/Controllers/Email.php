@@ -7,6 +7,8 @@ use Mail;
 use App\User;
 use Auth;
 use App\Mail\PropertyS;
+use App\Mail\CustomerS;
+
 class Email extends Controller
 {
 
@@ -28,33 +30,14 @@ class Email extends Controller
             'customerE' => auth()->user()->email,
             'customerP' => auth()->user()->phone_num,
             'customerT' => auth()->user()->telephone_num,
+            'duration' => $request->input('duration'),
         );
 
-        //Send Email Notification To Cusomer
-    
-        // Mail::send('/email/book', $data, function ($message) {
+        //Send Mail To Customer
+        Mail::to(auth()->user()->email)->send(new CustomerS($data));
 
-        //     $customer = auth()->user()->email;
-    
-        //     $message->from('elliotwalteriq@gmail.com', 'Rentout Property Specialist');
-    
-        //     $message->to($customer)->subject('Booking Request');
-    
-        // });
-
-        //Send Email Notification to Property Specialist
-
-        Mail::send('/email/adminbook', $data, function ($message, $ps) {
-
-            $customer = auth()->user()->email;
-    
-            $message->from('elliotwalteriq@gmail.com', 'Rentout Property Specialist');
-    
-            $message->to($ps)->subject('Booking Request');
-    
-        });
-
-        // Mail::to('buzonandrey@gmail.com')->send(new PropertyS());
+        //Send Mail to Property Specialist
+        Mail::to($request->input('propertyE'))->send(new PropertyS($data));
 
 
         return redirect('\post')->with('success','Booking Request Sent!');
@@ -62,11 +45,11 @@ class Email extends Controller
     
     }
 
-    public function siteVisit(Request $request, $id) {
+    public function siteVisit(Request $request) {
         // Request $request
 
         $data = array(
-            'request' => "Sire Visit",
+            'request' => "Site Visit",
             'optional' => $request->input('optional'),
             'title' => $request->input('title'),
             'condo' => $request->input('condo'),
@@ -76,31 +59,14 @@ class Email extends Controller
             'customerE' => auth()->user()->email,
             'customerP' => auth()->user()->phone_num,
             'customerT' => auth()->user()->telephone_num,
+            'time' => $request->input('time'),
         );
 
-        // Send Email Notification To Cusomer
-    
-        Mail::send('/email/sitevisit', $data, function ($message) {
+        // Send Email Notification To Customer
+        Mail::to(auth()->user()->email)->send(new CustomerS($data));
 
-            $customer = auth()->user()->email;
-    
-            $message->from('elliotwalteriq@gmail.com', 'Rentout Property Specialist');
-    
-            $message->to($customer)->subject('Booking Request');
-    
-        });
-
-        // Send Email Notification to Property Specialist
-
-        Mail::send('/email/adminsitevisit', $data, function ($message) {
-
-            $customer = auth()->user()->email;
-    
-            $message->from('elliotwalteriq@gmail.com', 'Rentout Property Specialist');
-    
-            $message->to($request->input('propertyE'))->subject('Booking Request');
-    
-        });
+        // Send Email Notification To Property Specialist
+        Mail::to(auth()->user()->email)->send(new PropertyS($data));
 
         return redirect('\post')->with('success','Site Visit Request Sent!');
     

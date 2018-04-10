@@ -6,7 +6,7 @@
 <body>
 
 <div>
-<p>{!! $title !!} site visit request by {!! $customer !!} Contact him via {!! $customerE !!}, {!! $customerP !!}, or {!! $customerT !!}</p>
+<p>{!! $title !!} site visit request during the {!! $time !!} period by {!! $customer !!} Contact him via {!! $customerE !!}, {!! $customerP !!}, or {!! $customerT !!}</p>
 
 @if($optional != null)
     <p>Additional Input by Customer: {!! $optional !!}</p>
