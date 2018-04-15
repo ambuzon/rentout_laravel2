@@ -3,6 +3,9 @@
 @section('content')
 <br>
 <br>
+<br>
+<br>
+<br>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -29,31 +32,10 @@
                     {{Form::label('unit_type', 'Unit Type')}}
                     {{Form::select('unit_type', ['Studio' => 'Studio', 'Single Bedroom' => 'Single Bedroom', 'Dual Bedroom' => 'Dual Bedroom'], 'Studio')}}
                 </div>
-                <div class="form-group">
-                    {{Form::label('city', 'City')}}
-                    {{Form::select('city', [
-                        'manila' => 'Manila', 
-                        'mandaluyong' => 'Mandaluyong', 
-                        'marikina' => 'Marikina',
-                        'pasig' => 'Manila', 
-                        'quezon_city' => 'Quezon City', 
-                        'san_juan' => 'San Juan',
-                        'caloocan' => 'Caloocan', 
-                        'malabon' => 'Malabon', 
-                        'navotas' => 'Navotas',
-                        'valenzuela' => 'Valenzuela', 
-                        'las_pinas' => 'Las Pinas', 
-                        'makati' => 'Makati',
-                        'muntinlupa' => 'Muntinlula',
-                        'paranaque' => 'Paranaque',
-                        'pasay' => 'Pasay',
-                        'pateros' => 'Pateros',
-                        'taguig' => 'Taguig'
-                        ], 'makati')}}
-                </div>
+
                 <div class="form-group">
                     {{Form::label('price', 'Price')}}
-                    {{Form::number('price', '', ['class'=>'form-control','placeholder'=>'0.0'])}}
+                    {{Form::number('price', $post->price, ['class'=>'form-control','placeholder'=>'0.0'])}}
                 </div>
                 {{--  <div class="form-group">
                     {{Form::label('sale_price', 'Promo Price')}}

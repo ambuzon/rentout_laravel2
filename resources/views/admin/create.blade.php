@@ -133,7 +133,7 @@
                 </div>
 
                 <div class="form-group">
-                    {{Form::label('pic', 'Upload Picture Logo of Condo')}} 
+                    {{Form::label('pic', 'Upload Picture Logo of Condo')}} <br>
                     {{Form::file('cover_image')}}
                 </div>
 
@@ -152,7 +152,7 @@
         var addto = "#field" + next;
         var addRemove = "#field" + (next);
         next = next + 1;
-        var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="amenities[]' + next + '" type="text">';
+        var newIn = '<input autocomplete="off" class="input" id="field' + next + '" name="amenities[]' + next + '" type="text">';
         var newInput = $(newIn);
         var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
         var removeButton = $(removeBtn);

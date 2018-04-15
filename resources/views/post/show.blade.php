@@ -135,8 +135,9 @@
                             <div class="customer-content-wrap">
                                 {!! Form::open(['action' => 'Email@siteVisit','method'=>'GET','enctype' => 'multipart/form-data']) !!}
                                 <div class="form-group">
-                                    {{Form::label('time', 'Visit Time')}}
+                                    {{Form::label('time', 'Visit Time and Date')}}
                                     {{Form::select('time', ['AM' => 'AM', 'PM' => 'PM'])}}
+                                    {{Form::date('date', '', ['class'=>'form-control'])}}
                                 </div>
                                 <div class="form-group">
                                     {{Form::label('optional', 'Additional Inquiries')}}

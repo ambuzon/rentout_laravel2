@@ -41,9 +41,10 @@ class PropertyS extends Mailable
                 'customerT' => $this->data['customerT'],
                 'optional' => $this->data['optional'],
                 'time' => $this->data['time'],
+                'date' => $this->data['date'],
             ]);
         }
-        elseif($this->data['request'] == "Unit Booking"){
+        else{
             return $this->subject('Customer Booking Request')->view('email.adminbook')->with([
                 'propertyE' => $this->data['propertyE'],
                 'propertyS' => $this->data['propertyS'],

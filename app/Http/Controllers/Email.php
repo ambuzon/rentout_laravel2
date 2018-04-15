@@ -8,6 +8,7 @@ use App\User;
 use Auth;
 use App\Mail\PropertyS;
 use App\Mail\CustomerS;
+use Carbon\Carbon;
 
 class Email extends Controller
 {
@@ -41,12 +42,15 @@ class Email extends Controller
 
 
         return redirect('\post')->with('success','Booking Request Sent!');
-
     
     }
 
     public function siteVisit(Request $request) {
         // Request $request
+
+        $this->validate($request, [
+            'date' => 'required',
+        ]);
 
         $data = array(
             'request' => "Site Visit",
@@ -60,13 +64,14 @@ class Email extends Controller
             'customerP' => auth()->user()->phone_num,
             'customerT' => auth()->user()->telephone_num,
             'time' => $request->input('time'),
+            'date' => $request->input('date'),
         );
 
         // Send Email Notification To Customer
         Mail::to(auth()->user()->email)->send(new CustomerS($data));
 
         // Send Email Notification To Property Specialist
-        Mail::to(auth()->user()->email)->send(new PropertyS($data));
+        Mail::to($request->input('propertyE'))->send(new PropertyS($data));
 
         return redirect('\post')->with('success','Site Visit Request Sent!');
     

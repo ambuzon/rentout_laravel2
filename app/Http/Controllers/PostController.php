@@ -13,6 +13,7 @@ use App\image;
 use App\Report;
 use App\Mail\BillingS;
 use Mail;
+use Carbon\Carbon;
 
 
 
@@ -168,36 +169,39 @@ class PostController extends Controller
         //     'body' => 'required'
         // ]);
         // Handle File Upload
-        if($request->hasFile('cover_image')){
-            //Get filename with the extension
-            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
-            //Get Just filename
-            $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
-            //Get just ext
-            $extension = $request->file('cover_image')->getClientOriginalExtension();
-            //Filename to store
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            //Upload Image
-            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
-        }
+        // if($request->hasFile('cover_image')){
+        //     //Get filename with the extension
+        //     $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+        //     //Get Just filename
+        //     $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
+        //     //Get just ext
+        //     $extension = $request->file('cover_image')->getClientOriginalExtension();
+        //     //Filename to store
+        //     $fileNameToStore = $filename.'_'.time().'.'.$extension;
+        //     //Upload Image
+        //     $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+        // }
 
         //Edit Post
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         if($request->hasFile('cover_image')){
-            $post->cover_image = $fileNameToStore;
+            foreach($images as $image){
+                Storage::put('public/'.$image->getClientOriginalName(), file_get_contents($image));
+                echo $image->getClientOriginalName();
+                $picture = new image;
+                $picture->cover_image = $image->getClientOriginalName();
+                $picture->post_id = $post->id;
+                $picture->save();
+            }
         }
-        
         $post->inclusion = $request->input('inclusion');
         $post->unit_level = $request->input('unit_level');
         $post->unit_type = $request->input('unit_type');
-        $post->city = $request->input('city');
         $post->price = $request->input('price');
         $post->user_id = auth()->user()->id;
         $post->condos_id = Auth::user()->condos['id'];
-        $post->cover_image = $fileNameToStore;
-        $post->dev_image = $fileNameToStore;
         $post->save();
         return redirect('\post')->with('success','Post Updated');
     }
@@ -235,7 +239,8 @@ class PostController extends Controller
             $condo = Condo::find($post->condos['id']);
             $condo->increment('total_reserves');
             $condo->increment('reserved');
-                if($condo->reserved == 5){
+            $date_checker = Carbon::now();
+                if($date_checker->day == 15){
                     //Send Billing to Property Specialist
                     $condo->reserved = 0;
                     $condo->status = 0;
@@ -289,7 +294,7 @@ class PostController extends Controller
     public function remove(Request $request, $id){
         $post = Post::find($id);
         $this->validate($request, [
-            'checkbox' => 'required',
+            'remove' => 'required',
         ]);
         if(auth()->user()->types['id'] == 1){
             return redirect('/')->with('error', 'Unauthorized Page');
