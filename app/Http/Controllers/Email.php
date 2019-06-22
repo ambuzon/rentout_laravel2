@@ -4,65 +4,76 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Mail;
+use App\User;
+use Auth;
+use App\Mail\PropertyS;
+use App\Mail\CustomerS;
+use Carbon\Carbon;
 
 class Email extends Controller
 {
-    
-    public function siteVisit() {
 
-        $data = array(
-            'name' => "Unit Site Visit",
-        );
-    
-        Mail::send('/welcome', $data, function ($message) {
-    
-            $message->from('elliotwalteriq@gmail.com', 'Learning Laravel');
-    
-            $message->to('elliotwalteriq@gmail.com')->subject('Site Visit Request');
-    
-        });
-    
-        return redirect('\post')->with('success','Site Visit Request Sent!');
-    
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 
-    public function reserve() {
-
+    public function book(Request $request) {
+        $ps = $request->input('propertyE');
         $data = array(
-            'name' => "Unit Reserve",
+            'request' => "Unit Booking",
+            'optional' => $request->input('optional'),
+            'title' => $request->input('title'),
+            'condo' => $request->input('condo'),
+            'propertyS' => $request->input('propertyS'),
+            'propertyE' => $request->input('propertyE'),
+            'customer' => auth()->user()->name,
+            'customerE' => auth()->user()->email,
+            'customerP' => auth()->user()->phone_num,
+            'customerT' => auth()->user()->telephone_num,
+            'duration' => $request->input('duration'),
         );
-    
-        Mail::send('/welcome', $data, function ($message) {
-    
-            $message->from('elliotwalteriq@gmail.com', 'Learning Laravel');
-    
-            $message->to('elliotwalteriq@gmail.com')->subject('Reservation Request');
-    
-        });
-    
-        return redirect('\post')->with('success','Reservation Request Sent!');
-    
-    }
 
-    public function book() {
+        //Send Mail To Customer
+        Mail::to(auth()->user()->email)->send(new CustomerS($data));
 
-        $data = array(
-            'name' => "Unit Booking",
-        );
-    
-        Mail::send('/welcome', $data, function ($message) {
-    
-            $message->from('elliotwalteriq@gmail.com', 'what is this');
-    
-            $message->to('elliotwalteriq@gmail.com')->subject('Booking Request');
-    
-        });
-    
+        //Send Mail to Property Specialist
+        Mail::to($request->input('propertyE'))->send(new PropertyS($data));
+
+
         return redirect('\post')->with('success','Booking Request Sent!');
     
     }
 
-    public function search(){
-        return "hello";
+    public function siteVisit(Request $request) {
+        // Request $request
+
+        $this->validate($request, [
+            'date' => 'required',
+        ]);
+
+        $data = array(
+            'request' => "Site Visit",
+            'optional' => $request->input('optional'),
+            'title' => $request->input('title'),
+            'condo' => $request->input('condo'),
+            'propertyS' => $request->input('propertyS'),
+            'propertyE' => $request->input('propertyE'),
+            'customer' => auth()->user()->name,
+            'customerE' => auth()->user()->email,
+            'customerP' => auth()->user()->phone_num,
+            'customerT' => auth()->user()->telephone_num,
+            'time' => $request->input('time'),
+            'date' => $request->input('date'),
+        );
+
+        // Send Email Notification To Customer
+        Mail::to(auth()->user()->email)->send(new CustomerS($data));
+
+        // Send Email Notification To Property Specialist
+        Mail::to($request->input('propertyE'))->send(new PropertyS($data));
+
+        return redirect('\post')->with('success','Site Visit Request Sent!');
+    
     }
 }

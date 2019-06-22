@@ -54,8 +54,8 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'gender' => 'required',
             'date_of_birth' => 'required',
-            'phone_num' => 'required',
-            'telephone_num' => 'required'
+            'phone_num' => 'required|numeric|digits:10',
+            'telephone_num' => 'required|numeric|digits:7'
         ]);
     }
 
@@ -67,6 +67,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $default_picture = "defaultprofile.jpg";
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -75,6 +76,7 @@ class RegisterController extends Controller
             'phone_num' => $data['phone_num'],
             'telephone_num' => $data['telephone_num'],
             'password' => Hash::make($data['password']),
+            'profile_picture' => $default_picture,
         ]);
     }
 }
